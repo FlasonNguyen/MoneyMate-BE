@@ -1,12 +1,12 @@
-import { Gender, LoginType, Role } from '@/common/constants';
+import { Gender, AccountType, UserRole } from '@/common/constants';
 
 export interface IUser {
   id?: string;
   email: string;
   password: string;
-  role: Role;
+  role: UserRole;
   gender: Gender;
   phone: string;
   avatar: string;
-  login_type: LoginType;
+  accountType: AccountType;
 }

@@ -1,7 +1,6 @@
-import { ModelCtor, Sequelize } from 'sequelize-typescript';
 import config from '@config';
+import { Sequelize } from 'sequelize';
 import * as entities from '@models/entities';
-import { AppException } from '@/common/exceptions';
 
 const { DB_USER, DB_PASSWORD, DB_DATABASE, DB_HOST, DB_PORT } = config.DATABASE;
 
@@ -12,7 +11,7 @@ for (const elementEntity of Object.values(entities)) {
     useValue: elementEntity,
   });
 }
-const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
+export const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
   dialect: 'postgres',
   host: DB_HOST,
   port: parseInt(DB_PORT, 10),
@@ -41,11 +40,4 @@ const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
   // },
   logging: false,
   benchmark: true,
-  models: [...Object.values(entities)],
 });
-
-// sequelize.authenticate();
-export {
-  sequelize, // connection instance (RAW queries)
-  Sequelize, // library
-};

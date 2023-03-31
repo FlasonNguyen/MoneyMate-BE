@@ -4,13 +4,13 @@ export enum Gender {
   OTHER = 'OTHER',
 }
 
-export enum LoginType {
+export enum AccountType {
   GOOGLE = 'GOOGLE',
   FACEBOOK = 'FACEBOOK',
   EMAIL = 'EMAIL',
 }
 
-export enum Role {
+export enum UserRole {
   ADMIN = 'ADMIN',
   USER = 'USER',
 }
