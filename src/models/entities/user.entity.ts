@@ -1,9 +1,9 @@
 import { DataTypes, Sequelize, Model } from 'sequelize';
 import { sequelize } from '@/models';
-import { AccountType, Gender, UserRole } from '@/common/constants';
+import { UserType, Gender, UserRole } from '@/common/constants';
 import { IUser } from '@/interfaces';
 
-export class UserEntity extends Model implements IUser {
+export class User extends Model implements IUser {
   public declare id: string;
   public firstName: string;
   public lastName: string;
@@ -13,13 +13,13 @@ export class UserEntity extends Model implements IUser {
   public password: string;
   public role: UserRole;
   public gender: Gender;
-  public accountType: AccountType;
+  public accountType: UserType;
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
   public readonly deletedAt: Date;
 }
 
-UserEntity.init(
+User.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -70,18 +70,18 @@ UserEntity.init(
       type: DataTypes.STRING,
       validate: {
         isIn: {
-          args: [[...Object.values(AccountType)]],
+          args: [[...Object.values(UserType)]],
           msg: 'Invalid Account Type',
         },
       },
-      defaultValue: AccountType.EMAIL,
+      defaultValue: UserType.EMAIL,
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
     deletedAt: DataTypes.DATE,
   },
   {
-    sequelize,
+    sequelize: sequelize,
     defaultScope: {
       attributes: { exclude: ['password'] },
     },
@@ -97,5 +97,6 @@ UserEntity.init(
     tableName: 'users',
     freezeTableName: true,
     paranoid: true,
+    timestamps: true,
   },
 );

@@ -4,7 +4,7 @@ export enum Gender {
   OTHER = 'OTHER',
 }
 
-export enum AccountType {
+export enum UserType {
   GOOGLE = 'GOOGLE',
   FACEBOOK = 'FACEBOOK',
   EMAIL = 'EMAIL',

@@ -1,3 +1,3 @@
 export * from './user.enum';
-export * from './product.enum';
+export * from './account.enum';
 export * from './exception.enum';

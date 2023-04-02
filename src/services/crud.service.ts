@@ -1,14 +1,13 @@
-import { CreationAttributes, DestroyOptions, UpdateOptions } from 'sequelize';
+import { CreationAttributes, DestroyOptions, UpdateOptions, ModelOptions, ModelStatic } from 'sequelize';
 import { IQueryOption } from '@/interfaces';
-import { ModelCtor, Model } from 'sequelize-typescript';
 import { sequelize } from '@/models';
 
-export class CRUDService<T extends Model> {
-  constructor(model: ModelCtor<T>) {
+export class CRUDService<T extends ModelOptions> {
+  constructor(model: ModelOptions<T>) {
     this.model = model;
   }
 
-  protected readonly model: ModelCtor<T>;
+  protected readonly model: ModelStatic<any>;
 
   async transaction() {
     return await sequelize.transaction();

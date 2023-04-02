@@ -3,7 +3,7 @@ import request from 'supertest';
 import { Sequelize } from 'sequelize';
 import App from '@/app';
 import { UsersRoute } from '@/routes';
-import { UserEntity } from '@/models';
+import { User } from '@/models';
 import { v4 as uuidv4 } from 'uuid';
 
 const examId1 = uuidv4();
@@ -22,7 +22,7 @@ describe('Testing Users', () => {
   describe('[GET] /users', () => {
     it('response findAll users', async () => {
       const usersRoute = new UsersRoute();
-      UserEntity.findAll = jest.fn().mockReturnValue([
+      User.findAll = jest.fn().mockReturnValue([
         {
           id: examId1,
           email: 'a@email.com',
@@ -52,7 +52,7 @@ describe('Testing Users', () => {
 
       const usersRoute = new UsersRoute();
 
-      UserEntity.findByPk = jest.fn().mockReturnValue({
+      User.findByPk = jest.fn().mockReturnValue({
         id: examId1,
         email: 'a@email.com',
         password: await bcrypt.hash('q1w2e3r4!', 10),
@@ -73,8 +73,8 @@ describe('Testing Users', () => {
 
       const usersRoute = new UsersRoute();
 
-      UserEntity.findOne = jest.fn().mockReturnValue(null);
-      UserEntity.create = jest.fn().mockReturnValue({
+      User.findOne = jest.fn().mockReturnValue(null);
+      User.create = jest.fn().mockReturnValue({
         id: examId1,
         email: userData.email,
         password: await bcrypt.hash(userData.password, 10),
@@ -96,13 +96,13 @@ describe('Testing Users', () => {
 
       const usersRoute = new UsersRoute();
 
-      UserEntity.findByPk = jest.fn().mockReturnValue({
+      User.findByPk = jest.fn().mockReturnValue({
         id: userId,
         email: userData.email,
         password: await bcrypt.hash(userData.password, 10),
       });
-      UserEntity.update = jest.fn().mockReturnValue([1]);
-      UserEntity.findByPk = jest.fn().mockReturnValue({
+      User.update = jest.fn().mockReturnValue([1]);
+      User.findByPk = jest.fn().mockReturnValue({
         id: userId,
         email: userData.email,
         password: await bcrypt.hash(userData.password, 10),
@@ -120,7 +120,7 @@ describe('Testing Users', () => {
 
       const usersRoute = new UsersRoute();
 
-      UserEntity.findByPk = jest.fn().mockReturnValue({
+      User.findByPk = jest.fn().mockReturnValue({
         id: userId,
         email: 'a@email.com',
         password: await bcrypt.hash('q1w2e3r4!', 10),

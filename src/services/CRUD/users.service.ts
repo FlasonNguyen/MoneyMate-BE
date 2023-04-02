@@ -1,14 +1,14 @@
 import { hash } from 'bcrypt';
-import { UserEntity } from '@/models';
+import { User } from '@/models';
 import { UserDto } from '@/models/dtos';
 import { AppException } from '@/common/exceptions';
 import { IUser } from '@/interfaces';
 import { isEmpty } from '@/utils';
 import { CRUDService } from '@services/crud.service';
 
-export class UserService extends CRUDService<UserEntity> {
+export class UserService extends CRUDService<User> {
   constructor() {
-    super(UserEntity);
+    super(User);
   }
 
   public async findAllUser(): Promise<UserDto[]> {

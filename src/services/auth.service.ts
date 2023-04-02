@@ -1,17 +1,17 @@
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import config from '@config';
-import { UserEntity } from '@/models';
+import { User } from '@/models';
 import { UserDto } from '@/models/dtos';
 import { AppException } from '@/common/exceptions';
 import { DataStoredInToken, IUser } from '@/interfaces';
 import { isEmpty } from '@/utils';
 import { CRUDService } from '@services/crud.service';
 
-export class AuthService extends CRUDService<UserEntity> {
+export class AuthService extends CRUDService<User> {
   // public model = UserModel;
   constructor() {
-    super(UserEntity);
+    super(User);
   }
 
   public async signup(userData: UserDto): Promise<IUser> {

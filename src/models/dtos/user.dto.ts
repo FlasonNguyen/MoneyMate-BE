@@ -1,5 +1,5 @@
 import { IsString, IsEmail, IsUUID, IsDate, IsEnum } from 'class-validator';
-import { Gender, UserRole, AccountType } from '@/common/constants';
+import { Gender, UserRole, UserType } from '@/common/constants';
 import { IUser } from '@/interfaces';
 
 export class UserDto implements IUser {
@@ -23,8 +23,8 @@ export class UserDto implements IUser {
   @IsEnum(UserRole)
   public role: UserRole;
 
-  @IsEnum(AccountType)
-  public login_type: AccountType;
+  @IsEnum(UserType)
+  public login_type: UserType;
 
   @IsDate()
   public created_at: Date;
